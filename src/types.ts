@@ -6,7 +6,14 @@ export interface Installment {
   status: 'پرداخت شده' | 'در انتظار پرداخت';
 }
 
-export interface InstallmentContextType {
+export interface User {
+  id: number;
+  name: string;
+  nationalId: string;
   installments: Installment[];
-  updateInstallmentStatus: (id: number, status: 'پرداخت شده' | 'در انتظار پرداخت') => void;
+}
+
+export interface AppContextType {
+  users: User[];
+  updateInstallmentStatus: (userId: number, installmentId: number, status: 'پرداخت شده' | 'در انتظار پرداخت') => void;
 }
