@@ -52,13 +52,25 @@ const UserDashboardPage = () => {
     return installment[column.accessor as keyof Installment];
   };
 
+  const getInstallmentCellClassName = (column: { accessor: string }) => {
+    if (column.accessor === 'payment') {
+      return 'whitespace-nowrap';
+    }
+    return '';
+  };
+
   return (
     <div className="p-4 sm:p-8 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">پنل کاربری خوش آمدید, {currentUser.name}!</h1>
 
       <div className="bg-white p-6 rounded-lg shadow-md mb-8">
         <h2 className="text-2xl font-bold mb-4 text-gray-700">زمان‌بندی اقساط</h2>
-        <Table<Installment> columns={installmentColumns} data={currentUser.installments} renderCell={renderInstallmentCell} />
+        <Table<Installment>
+          columns={installmentColumns}
+          data={currentUser.installments}
+          renderCell={renderInstallmentCell}
+          getCellClassName={getInstallmentCellClassName}
+        />
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
