@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import UserDashboardPage from './pages/UserDashboardPage';
 import AdminPage from './pages/AdminPage';
@@ -15,7 +16,8 @@ const App = () => {
     <AppProvider>
       <Router basename="/bimeh-alborz">
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route element={<Layout />}>
             <Route path="/dashboard" element={<UserDashboardPage />} />
             <Route path="/admin" element={<AdminPage />} />

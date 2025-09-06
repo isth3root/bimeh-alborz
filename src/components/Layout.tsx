@@ -15,7 +15,6 @@ const Layout = () => {
             <Link to="/info" className="text-gray-300 hover:text-white">اطلاعات و قوانین</Link>
             <Link to="/downloads" className="text-gray-300 hover:text-white">دانلود فرم‌ها</Link>
             <Link to="/contact" className="text-gray-300 hover:text-white">تماس با ما</Link>
-            <Link to="/admin" className="text-gray-300 hover:text-white">پنل ادمین</Link>
           </div>
           <div className="md:hidden">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white">
@@ -32,7 +31,6 @@ const Layout = () => {
             <Link to="/info" className="block text-gray-300 hover:text-white py-2">اطلاعات و قوانین</Link>
             <Link to="/downloads" className="block text-gray-300 hover:text-white py-2">دانلود فرم‌ها</Link>
             <Link to="/contact" className="block text-gray-300 hover:text-white py-2">تماس با ما</Link>
-            <Link to="/admin" className="block text-gray-300 hover:text-white py-2">پنل ادمین</Link>
           </div>
         )}
       </nav>
