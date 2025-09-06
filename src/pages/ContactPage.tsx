@@ -1,47 +1,64 @@
+import { motion } from 'framer-motion';
+
 const ContactPage = () => {
   return (
-    <div className="p-4 sm:p-8">
-      <h1 className="text-3xl font-bold mb-8">تماس با ما</h1>
-      <form className="w-full max-w-lg">
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
-              نام
-            </label>
-            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" />
+    <div className="p-4 sm:p-8 bg-gray-50 min-h-screen">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">تماس با ما</h1>
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4 text-gray-700">اطلاعات تماس</h2>
+            <div className="space-y-4 text-gray-600">
+              <p><strong>آدرس:</strong> تهران، خیابان اصلی، پلاک ۱۲۳</p>
+              <p><strong>تلفن:</strong> ۰۲۱-۱۲۳۴۵۶۷۸</p>
+              <p><strong>ایمیل:</strong> info@bimeh-alborz.com</p>
+              <p><strong>ساعات کاری:</strong> شنبه تا چهارشنبه، ۹ صبح تا ۵ عصر</p>
+            </div>
+            <div className="mt-8">
+                <h3 className="text-xl font-bold mb-4 text-gray-700">ما را در نقشه پیدا کنید</h3>
+                <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.896789508539!2d51.38897381525946!3d35.7040619801893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a7b326d97d%3A0x9e8a0a9e8a0a9e8a!2sTehran%2C%20Iran!5e0!3m2!1sen!2sus!4v1622548812613!5m2!1sen!2sus"
+                        width="100%"
+                        height="100%"
+                        style={{border:0}}
+                        allowFullScreen
+                        loading="lazy"
+                        title="نقشه موقعیت دفتر"
+                    ></iframe>
+                </div>
+            </div>
           </div>
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
-              نام خانوادگی
-            </label>
-            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" />
+          {/* Contact Form */}
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4 text-gray-700">ارسال پیام</h2>
+            <form className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">نام</label>
+                <input type="text" id="name" className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md"/>
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">ایمیل</label>
+                <input type="email" id="email" className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md"/>
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700">پیام شما</label>
+                <textarea id="message" rows={5} className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md"></textarea>
+              </div>
+              <div>
+                <button type="submit" className="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">
+                  ارسال پیام
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
-              ایمیل
-            </label>
-            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" />
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
-              پیام
-            </label>
-            <textarea className=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="message"></textarea>
-          </div>
-        </div>
-        <div className="md:flex md:items-center">
-          <div className="md:w-1/3">
-            <button className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
-              ارسال
-            </button>
-          </div>
-          <div className="md:w-2/3"></div>
-        </div>
-      </form>
+      </motion.div>
     </div>
   );
 };
