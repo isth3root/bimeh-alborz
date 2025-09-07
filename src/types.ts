@@ -12,6 +12,7 @@ export interface User {
   nationalId: string;
   installments: Installment[];
   role: 'user' | 'admin';
+  password?: string;
 }
 
 export interface BlogPost {
