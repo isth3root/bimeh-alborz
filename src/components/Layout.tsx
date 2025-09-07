@@ -38,10 +38,10 @@ const Layout = ({ variant = 'app' }: LayoutProps) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <nav className="sticky top-0 z-50 p-4 bg-white/80 backdrop-blur-sm shadow-md">
         <div className="container mx-auto flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-primary-700">بیمه البرز</Link>
+          <Link to="/" className="text-2xl font-bold text-indigo-700">بیمه البرز</Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-6">
@@ -50,13 +50,13 @@ const Layout = ({ variant = 'app' }: LayoutProps) => {
                 key={link.name}
                 to={link.path}
                 onClick={(e) => handleScrollLink(e, link.path)}
-                className="font-semibold text-gray-600 hover:text-primary-600 transition-colors"
+                className="font-semibold text-gray-600 hover:text-indigo-600 transition-colors"
               >
                 {link.name}
               </Link>
             ))}
             {variant === 'landing' && (
-                <Link to="/login" className="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors duration-300 font-semibold">
+                <Link to="/login" className="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition-colors duration-300 font-semibold">
                     ورود / ثبت نام
                 </Link>
             )}
@@ -74,19 +74,19 @@ const Layout = ({ variant = 'app' }: LayoutProps) => {
         {isMenuOpen && (
           <div className="md:hidden mt-4">
             {links.map(link => (
-              <Link key={link.name} to={link.path} onClick={() => setIsMenuOpen(false)} className="block py-2 text-center text-gray-700 hover:bg-primary-50 rounded-md">
+              <Link key={link.name} to={link.path} onClick={() => setIsMenuOpen(false)} className="block py-2 text-center text-gray-700 hover:bg-indigo-50 rounded-md">
                 {link.name}
               </Link>
             ))}
             {variant === 'landing' && (
-                <Link to="/login" onClick={() => setIsMenuOpen(false)} className="block w-full mt-2 py-2 text-center bg-primary-600 text-white rounded-full hover:bg-primary-700">
+                <Link to="/login" onClick={() => setIsMenuOpen(false)} className="block w-full mt-2 py-2 text-center bg-indigo-600 text-white rounded-full hover:bg-indigo-700">
                     ورود / ثبت نام
                 </Link>
             )}
           </div>
         )}
       </nav>
-      <main>
+      <main className="flex-grow">
         <Outlet />
       </main>
       <footer className="bg-gray-900 text-white py-8">

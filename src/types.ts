@@ -24,6 +24,8 @@ export interface BlogPost {
 export interface AppContextType {
   users: User[];
   blogPosts: BlogPost[];
+  currentUser: User | null;
+  login: (nationalId: string) => User | null;
   addUser: (user: Omit<User, 'id' | 'installments' | 'role'>) => void;
   deleteUser: (userId: number) => void;
   updateInstallmentStatus: (userId: number, installmentId: number, status: 'پرداخت شده' | 'در انتظار پرداخت') => void;

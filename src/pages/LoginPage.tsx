@@ -8,7 +8,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { users } = useAppContext();
+  const { login } = useAppContext();
 
   // IMPORTANT: This is a test site key provided by Google.
   // You MUST replace this with your own site key from the Google reCAPTCHA admin console.
@@ -22,12 +22,9 @@ const LoginPage = () => {
       return;
     }
 
-    // User authentication logic (mock)
-    const user = users.find(u => u.nationalId === nationalId);
+    const user = login(nationalId);
 
-    if (user) { // For now, we are not checking password
-      // In a real app, you would also send the recaptchaValue to your server for verification
-      console.log("reCAPTCHA value:", recaptchaValue);
+    if (user) {
       if (user.role === 'admin') {
         navigate('/admin');
       } else {
@@ -42,7 +39,7 @@ const LoginPage = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-xl">
         <div className="text-center">
-            <Link to="/" className="text-primary-600 hover:text-primary-800 mb-4 inline-block font-semibold">
+            <Link to="/" className="text-indigo-600 hover:text-indigo-800 mb-4 inline-block font-semibold">
                 &larr; بازگشت به صفحه اصلی
             </Link>
             <h2 className="text-3xl font-bold text-gray-800">ورود به پنل کاربری</h2>
@@ -58,7 +55,7 @@ const LoginPage = () => {
               id="nationalId"
               value={nationalId}
               onChange={(e) => setNationalId(e.target.value)}
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
           <div>
@@ -70,7 +67,7 @@ const LoginPage = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
 
@@ -85,9 +82,9 @@ const LoginPage = () => {
           <div>
             <button
               type="submit"
-              className="w-full px-4 py-3 font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-300"
+              className="w-full px-4 py-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
             >
-              ورود
+              ورود به پنل
             </button>
           </div>
         </form>
