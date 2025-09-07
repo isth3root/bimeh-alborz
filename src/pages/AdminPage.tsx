@@ -59,9 +59,9 @@ const AdminPage = () => {
             <div className="bg-white p-6 rounded-lg shadow-md mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-gray-700">افزودن کاربر جدید</h2>
                 <form onSubmit={handleAddUser} className="flex flex-col sm:flex-row gap-4">
-                    <input type="text" placeholder="نام و نام خانوادگی" value={newUserName} onChange={(e) => setNewUserName(e.target.value)} className="flex-grow px-3 py-2 border border-gray-300 rounded-md" />
-                    <input type="text" placeholder="کد ملی" value={newUserNationalId} onChange={(e) => setNewUserNationalId(e.target.value)} className="flex-grow px-3 py-2 border border-gray-300 rounded-md" />
-                    <button type="submit" className="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600">افزودن</button>
+                    <input type="text" placeholder="نام و نام خانوادگی" value={newUserName} onChange={(e) => setNewUserName(e.target.value)} className="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500" />
+                    <input type="text" placeholder="کد ملی" value={newUserNationalId} onChange={(e) => setNewUserNationalId(e.target.value)} className="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500" />
+                    <button type="submit" className="bg-secondary-500 text-white px-6 py-2 rounded-md hover:bg-secondary-600">افزودن</button>
                 </form>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -77,18 +77,18 @@ const AdminPage = () => {
             <div className="bg-white p-6 rounded-lg shadow-md mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-gray-700">{editingPost ? 'ویرایش پست' : 'افزودن پست جدید'}</h2>
                 <form onSubmit={handleSavePost} className="flex flex-col gap-4">
-                    <input type="text" placeholder="عنوان" value={postTitle} onChange={(e) => setPostTitle(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-md" />
-                    <input type="text" placeholder="خلاصه" value={postSummary} onChange={(e) => setPostSummary(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-md" />
-                    <textarea placeholder="محتوا" value={postContent} onChange={(e) => setPostContent(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-md h-32"></textarea>
+                    <input type="text" placeholder="عنوان" value={postTitle} onChange={(e) => setPostTitle(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500" />
+                    <input type="text" placeholder="خلاصه" value={postSummary} onChange={(e) => setPostSummary(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500" />
+                    <textarea placeholder="محتوا" value={postContent} onChange={(e) => setPostContent(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-md h-32 focus:ring-primary-500"></textarea>
                     <div className="flex gap-4">
-                        <button type="submit" className="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600">{editingPost ? 'ذخیره تغییرات' : 'افزودن'}</button>
+                        <button type="submit" className="bg-secondary-500 text-white px-6 py-2 rounded-md hover:bg-secondary-600">{editingPost ? 'ذخیره تغییرات' : 'افزودن'}</button>
                         {editingPost && <button type="button" onClick={() => { setEditingPost(null); setPostTitle(''); setPostSummary(''); setPostContent(''); }} className="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600">لغو</button>}
                     </div>
                 </form>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-4 text-gray-700">لیست پست‌ها</h2>
-                <ul className="space-y-2">{blogPosts.map(post => (<li key={post.id} className="flex justify-between items-center p-3 bg-gray-100 rounded-md"><span>{post.title}</span><div className="flex gap-2"><button onClick={() => handleEditPost(post)} className="text-blue-500 hover:text-blue-700">ویرایش</button><button onClick={() => deleteBlogPost(post.id)} className="text-red-500 hover:text-red-700">حذف</button></div></li>))}</ul>
+                <ul className="space-y-2">{blogPosts.map(post => (<li key={post.id} className="flex justify-between items-center p-3 bg-gray-100 rounded-md"><span>{post.title}</span><div className="flex gap-2"><button onClick={() => handleEditPost(post)} className="text-primary-500 hover:text-primary-700">ویرایش</button><button onClick={() => deleteBlogPost(post.id)} className="text-red-500 hover:text-red-700">حذف</button></div></li>))}</ul>
             </div>
         </>
     );
@@ -96,15 +96,15 @@ const AdminPage = () => {
     const renderInstallmentManagement = () => {
         const adminColumns = [{ header: 'ردیف', accessor: 'id' }, { header: 'تاریخ', accessor: 'date' }, { header: 'مبلغ قسط', accessor: 'installmentAmount' }, { header: 'وضعیت', accessor: 'status' }, { header: 'عملیات', accessor: 'action' }];
         const renderAdminCell = (installment: Installment, column: { accessor: string }) => {
-            if (column.accessor === 'action') return installment.status === 'در انتظار پرداخت' && <button onClick={() => updateInstallmentStatus(selectedUser!.id, installment.id, 'پرداخت شده')} className="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700">تغییر به پرداخت شده</button>;
-            if (column.accessor === 'status') return <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${installment.status === 'پرداخت شده' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>{installment.status}</span>;
+            if (column.accessor === 'action') return installment.status === 'در انتظار پرداخت' && <button onClick={() => updateInstallmentStatus(selectedUser!.id, installment.id, 'پرداخت شده')} className="px-4 py-2 text-sm font-medium text-white bg-secondary-600 rounded-md hover:bg-secondary-700">تغییر به پرداخت شده</button>;
+            if (column.accessor === 'status') return <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${installment.status === 'پرداخت شده' ? 'bg-secondary-100 text-secondary-800' : 'bg-red-100 text-red-800'}`}>{installment.status}</span>;
             return installment[column.accessor as keyof Installment];
         };
 
         if (selectedUser) {
             return (
                 <>
-                    <button onClick={() => setSelectedUser(null)} className="mb-4 text-indigo-600 hover:text-indigo-800">&larr; بازگشت به لیست کاربران</button>
+                    <button onClick={() => setSelectedUser(null)} className="mb-4 text-primary-600 hover:text-primary-800">&larr; بازگشت به لیست کاربران</button>
                     <h1 className="text-3xl font-bold mb-8 text-gray-800">مدیریت اقساط برای {selectedUser.name}</h1>
                     <div className="bg-white p-6 rounded-lg shadow-md"><Table<Installment> columns={adminColumns} data={selectedUser.installments} renderCell={renderAdminCell} /></div>
                 </>
