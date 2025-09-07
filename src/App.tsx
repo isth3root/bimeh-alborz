@@ -16,9 +16,11 @@ const App = () => {
     <AppProvider>
       <Router basename="/bimeh-alborz">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route element={<Layout variant="landing" />}>
+            <Route path="/" element={<LandingPage />} />
+          </Route>
           <Route path="/login" element={<LoginPage />} />
-          <Route element={<Layout />}>
+          <Route element={<Layout variant="app" />}>
             <Route path="/dashboard" element={<UserDashboardPage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/blog" element={<BlogPage />} />

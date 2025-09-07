@@ -1,42 +1,99 @@
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-const Layout = () => {
+interface LayoutProps {
+  variant?: 'app' | 'landing';
+}
+
+const Layout = ({ variant = 'app' }: LayoutProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinks = {
+    app: [
+      { name: 'داشبورد', path: '/dashboard' },
+      { name: 'بلاگ', path: '/blog' },
+      { name: 'اطلاعات و قوانین', path: '/info' },
+      { name: 'دانلود فرم‌ها', path: '/downloads' },
+      { name: 'تماس با ما', path: '/contact' },
+    ],
+    landing: [
+      { name: 'ویژگی‌ها', path: '#features' },
+      { name: 'نظرات', path: '#testimonials' },
+      { name: 'بلاگ', path: '/blog' },
+      { name: 'تماس با ما', path: '/contact' },
+    ]
+  };
+
+  const links = variant === 'app' ? navLinks.app : navLinks.landing;
+
+  const handleScrollLink = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path.startsWith('#')) {
+      e.preventDefault();
+      const targetId = path.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <div>
-      <nav className="bg-gray-800 p-4">
+      <nav className="sticky top-0 z-50 p-4 bg-white/80 backdrop-blur-sm shadow-md">
         <div className="container mx-auto flex justify-between items-center">
-          <Link to="/dashboard" className="text-white text-lg font-bold">بیمه البرز</Link>
-          <div className="hidden md:flex space-x-4">
-            <Link to="/dashboard" className="text-gray-300 hover:text-white">داشبورد</Link>
-            <Link to="/blog" className="text-gray-300 hover:text-white">بلاگ</Link>
-            <Link to="/info" className="text-gray-300 hover:text-white">اطلاعات و قوانین</Link>
-            <Link to="/downloads" className="text-gray-300 hover:text-white">دانلود فرم‌ها</Link>
-            <Link to="/contact" className="text-gray-300 hover:text-white">تماس با ما</Link>
+          <Link to="/" className="text-2xl font-bold text-primary-700">بیمه البرز</Link>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center space-x-6">
+            {links.map(link => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onClick={(e) => handleScrollLink(e, link.path)}
+                className="font-semibold text-gray-600 hover:text-primary-600 transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+            {variant === 'landing' && (
+                <Link to="/login" className="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors duration-300 font-semibold">
+                    ورود / ثبت نام
+                </Link>
+            )}
           </div>
+
+          {/* Mobile Nav Toggle */}
           <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-              </svg>
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-800">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
           </div>
         </div>
+
+        {/* Mobile Nav Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-4">
-            <Link to="/dashboard" className="block text-gray-300 hover:text-white py-2">داشبورد</Link>
-            <Link to="/blog" className="block text-gray-300 hover:text-white py-2">بلاگ</Link>
-            <Link to="/info" className="block text-gray-300 hover:text-white py-2">اطلاعات و قوانین</Link>
-            <Link to="/downloads" className="block text-gray-300 hover:text-white py-2">دانلود فرم‌ها</Link>
-            <Link to="/contact" className="block text-gray-300 hover:text-white py-2">تماس با ما</Link>
+            {links.map(link => (
+              <Link key={link.name} to={link.path} onClick={() => setIsMenuOpen(false)} className="block py-2 text-center text-gray-700 hover:bg-primary-50 rounded-md">
+                {link.name}
+              </Link>
+            ))}
+            {variant === 'landing' && (
+                <Link to="/login" onClick={() => setIsMenuOpen(false)} className="block w-full mt-2 py-2 text-center bg-primary-600 text-white rounded-full hover:bg-primary-700">
+                    ورود / ثبت نام
+                </Link>
+            )}
           </div>
         )}
       </nav>
       <main>
         <Outlet />
       </main>
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="container mx-auto text-center">
+            <p>&copy; ۱۴۰۳ - تمام حقوق برای پورتال بیمه البرز محفوظ است.</p>
+        </div>
+      </footer>
     </div>
   );
 };

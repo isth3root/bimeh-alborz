@@ -15,12 +15,15 @@
   "dependencies": {
     "@nabidam/react-captcha": "^1.2.0",
     "@tailwindcss/vite": "^4.1.12",
+    "@types/react-google-recaptcha": "^2.1.9",
     "framer-motion": "^12.23.12",
     "persian-captcha-generator": "^1.4.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-google-recaptcha": "^3.1.0",
     "react-router-dom": "^7.8.2",
     "react-type-animation": "^3.2.0",
+    "swiper": "^11.2.10",
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {

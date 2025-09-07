@@ -32,7 +32,7 @@ const UserDashboardPage = () => {
           href="https://www.alborzins.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
+          className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700"
         >
           پرداخت آنلاین
         </a>
@@ -42,7 +42,7 @@ const UserDashboardPage = () => {
     if (column.accessor === 'status') {
       return (
         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-          installment.status === 'پرداخت شده' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+          installment.status === 'پرداخت شده' ? 'bg-secondary-100 text-secondary-800' : 'bg-red-100 text-red-800'
         }`}>
           {installment.status}
         </span>
@@ -52,7 +52,7 @@ const UserDashboardPage = () => {
     return installment[column.accessor as keyof Installment];
   };
 
-  const getInstallmentCellClassName = (column: { accessor: string }) => {
+  const getInstallmentCellClassName = (column: { accessor:string }) => {
     if (column.accessor === 'payment') {
       return 'whitespace-nowrap';
     }
@@ -95,7 +95,7 @@ const UserDashboardPage = () => {
                   <p className="font-semibold text-gray-800">تاریخ: {receipt.date}</p>
                   <p className="text-sm text-gray-600">مبلغ: {receipt.amount}</p>
                 </div>
-                <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                <button className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700">
                   دانلود PDF
                 </button>
               </li>
