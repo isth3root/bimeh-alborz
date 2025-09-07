@@ -10,6 +10,7 @@ const initialUsers: User[] = [
     name: 'علی رضایی',
     nationalId: '1234567890',
     role: 'user',
+    password: '123',
     installments: [
       { id: 1, date: '1403/01/15', price: '500,000 تومان', installmentAmount: '250,000 تومان', status: 'پرداخت شده' },
       { id: 2, date: '1403/02/15', price: '500,000 تومان', installmentAmount: '250,000 تومان', status: 'در انتظار پرداخت' },
@@ -20,6 +21,7 @@ const initialUsers: User[] = [
     name: 'مریم حسینی',
     nationalId: '0987654321',
     role: 'user',
+    password: '123',
     installments: [
       { id: 1, date: '1403/01/20', price: '1,000,000 تومان', installmentAmount: '500,000 تومان', status: 'پرداخت شده' },
       { id: 2, date: '1403/02/20', price: '1,000,000 تومان', installmentAmount: '500,000 تومان', status: 'پرداخت شده' },
@@ -31,6 +33,7 @@ const initialUsers: User[] = [
     name: 'ادمین سیستم',
     nationalId: 'admin', // Using 'admin' as the username for the admin
     role: 'admin',
+    password: 'admin',
     installments: [],
   }
 ];
