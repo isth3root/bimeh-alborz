@@ -9,7 +9,6 @@ const LoginPage = () => {
   const [role, setRole] = useState('user'); // 'user' or 'admin'
   const navigate = useNavigate();
   const captchaRef = useRef(null);
-  const captchaInputRef = useRef(null); // Dummy ref for the inputEl prop
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,8 +85,8 @@ const LoginPage = () => {
               کد امنیتی
             </label>
             <div className="flex items-center space-x-4" dir="ltr">
-                {/* @ts-ignore */}
-                <Captcha setWord={setCaptchaValue} ref={captchaRef} inputEl={captchaInputRef} />
+                {/* @ts-ignore - The types for this package seem to be incorrect, causing a build error if not ignored */}
+                <Captcha setWord={setCaptchaValue} ref={captchaRef} />
               <input
                 type="text"
                 id="captcha"
@@ -95,7 +94,6 @@ const LoginPage = () => {
                 value={captchaInput}
                 onChange={(e) => setCaptchaInput(e.target.value)}
                 className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                ref={captchaInputRef}
               />
             </div>
           </div>
