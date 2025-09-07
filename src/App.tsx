@@ -14,7 +14,7 @@ import Layout from './components/Layout';
 const App = () => {
   return (
     <AppProvider>
-      <Router basename="/bimeh-alborz">
+      <Router basename="/bimeh-alborz/">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
