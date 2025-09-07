@@ -9,6 +9,7 @@ const initialUsers: User[] = [
     id: 1,
     name: 'علی رضایی',
     nationalId: '1234567890',
+    role: 'user',
     installments: [
       { id: 1, date: '1403/01/15', price: '500,000 تومان', installmentAmount: '250,000 تومان', status: 'پرداخت شده' },
       { id: 2, date: '1403/02/15', price: '500,000 تومان', installmentAmount: '250,000 تومان', status: 'در انتظار پرداخت' },
@@ -18,12 +19,20 @@ const initialUsers: User[] = [
     id: 2,
     name: 'مریم حسینی',
     nationalId: '0987654321',
+    role: 'user',
     installments: [
       { id: 1, date: '1403/01/20', price: '1,000,000 تومان', installmentAmount: '500,000 تومان', status: 'پرداخت شده' },
       { id: 2, date: '1403/02/20', price: '1,000,000 تومان', installmentAmount: '500,000 تومان', status: 'پرداخت شده' },
       { id: 3, date: '1403/03/20', price: '1,000,000 تومان', installmentAmount: '500,000 تومان', status: 'در انتظار پرداخت' },
     ],
   },
+  {
+    id: 3,
+    name: 'ادمین سیستم',
+    nationalId: 'admin', // Using 'admin' as the username for the admin
+    role: 'admin',
+    installments: [],
+  }
 ];
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
@@ -31,8 +40,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>(initialBlogPosts);
 
   // User CRUD
-  const addUser = (user: Omit<User, 'id' | 'installments'>) => {
-    const newUser: User = { ...user, id: Date.now(), installments: [] };
+  const addUser = (user: Omit<User, 'id' | 'installments' | 'role'>) => {
+    const newUser: User = { ...user, id: Date.now(), installments: [], role: 'user' };
     setUsers([...users, newUser]);
   };
 
