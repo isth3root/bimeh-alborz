@@ -11,6 +11,7 @@ export interface User {
   name: string;
   nationalId: string;
   installments: Installment[];
+  role: 'user' | 'admin';
 }
 
 export interface BlogPost {
@@ -23,7 +24,7 @@ export interface BlogPost {
 export interface AppContextType {
   users: User[];
   blogPosts: BlogPost[];
-  addUser: (user: Omit<User, 'id' | 'installments'>) => void;
+  addUser: (user: Omit<User, 'id' | 'installments' | 'role'>) => void;
   deleteUser: (userId: number) => void;
   updateInstallmentStatus: (userId: number, installmentId: number, status: 'پرداخت شده' | 'در انتظار پرداخت') => void;
   addBlogPost: (post: Omit<BlogPost, 'id'>) => void;
