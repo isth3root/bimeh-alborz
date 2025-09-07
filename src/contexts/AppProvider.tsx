@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { AppContext } from './appContext';
-import type { User, BlogPost } from '../types';
+import type { User, BlogPost, AppContextType } from '../types';
 import { blogPosts as initialBlogPosts } from '../data/blogData';
 
 const initialUsers: User[] = [
@@ -38,6 +38,16 @@ const initialUsers: User[] = [
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [users, setUsers] = useState<User[]>(initialUsers);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>(initialBlogPosts);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  const login = (nationalId: string): User | null => {
+    const user = users.find(u => u.nationalId === nationalId);
+    if (user) {
+        setCurrentUser(user);
+        return user;
+    }
+    return null;
+  };
 
   // User CRUD
   const addUser = (user: Omit<User, 'id' | 'installments' | 'role'>) => {
@@ -73,17 +83,21 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setBlogPosts(blogPosts.filter(post => post.id !== postId));
   };
 
+  const contextValue: AppContextType = {
+    users,
+    blogPosts,
+    currentUser,
+    login,
+    addUser,
+    deleteUser,
+    updateInstallmentStatus,
+    addBlogPost,
+    updateBlogPost,
+    deleteBlogPost
+  };
+
   return (
-    <AppContext.Provider value={{
-        users,
-        blogPosts,
-        addUser,
-        deleteUser,
-        updateInstallmentStatus,
-        addBlogPost,
-        updateBlogPost,
-        deleteBlogPost
-    }}>
+    <AppContext.Provider value={contextValue}>
       {children}
     </AppContext.Provider>
   );

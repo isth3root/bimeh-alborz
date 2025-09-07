@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import { useAppContext } from '../hooks/useAppContext';
 import Table from '../components/Table';
 import type { Installment } from '../types';
@@ -13,8 +14,13 @@ const receipts = [
 ];
 
 const UserDashboardPage = () => {
-  const { users } = useAppContext();
-  const currentUser = users[0]; // Assuming the first user is the logged-in user
+  const { currentUser } = useAppContext();
+
+  if (!currentUser || currentUser.role !== 'user') {
+    // If no user is logged in, or the user is not a regular user, redirect to login.
+    // This is a simple form of authorization.
+    return <Navigate to="/login" />;
+  }
 
   const installmentColumns = [
     { header: 'ردیف', accessor: 'id' },
@@ -32,7 +38,7 @@ const UserDashboardPage = () => {
           href="https://www.alborzins.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700"
+          className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700"
         >
           پرداخت آنلاین
         </a>
@@ -42,7 +48,7 @@ const UserDashboardPage = () => {
     if (column.accessor === 'status') {
       return (
         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-          installment.status === 'پرداخت شده' ? 'bg-secondary-100 text-secondary-800' : 'bg-red-100 text-red-800'
+          installment.status === 'پرداخت شده' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
         }`}>
           {installment.status}
         </span>
@@ -95,7 +101,7 @@ const UserDashboardPage = () => {
                   <p className="font-semibold text-gray-800">تاریخ: {receipt.date}</p>
                   <p className="text-sm text-gray-600">مبلغ: {receipt.amount}</p>
                 </div>
-                <button className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700">
+                <button className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
                   دانلود PDF
                 </button>
               </li>
