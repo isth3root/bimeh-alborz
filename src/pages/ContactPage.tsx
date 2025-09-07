@@ -14,7 +14,7 @@ const ContactPage = () => {
           <div className="bg-white p-8 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold mb-4 text-primary-700">اطلاعات تماس</h2>
             <div className="space-y-4 text-gray-600">
-              <p><strong>آدرس:</strong> تهران، خیابان اصلی، پلاک ۱۲۳</p>
+              <p><strong>آدرس:</strong> اهواز خیابان اصلی، پلاک ۱۲۳</p>
               <p><strong>تلفن:</strong> ۰۲۱-۱۲۳۴۵۶۷۸</p>
               <p><strong>ایمیل:</strong> info@bimeh-alborz.com</p>
               <p><strong>ساعات کاری:</strong> شنبه تا چهارشنبه، ۹ صبح تا ۵ عصر</p>

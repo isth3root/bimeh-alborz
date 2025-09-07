@@ -91,7 +91,7 @@ const Layout = ({ variant = 'app' }: LayoutProps) => {
       </main>
       <footer className="bg-gray-900 text-white py-8">
         <div className="container mx-auto text-center">
-            <p>&copy; ۱۴۰۳ - تمام حقوق برای پورتال بیمه البرز محفوظ است.</p>
+            <p>&copy; ۱۴۰۴ - تمام حقوق برای پورتال بیمه البرز محفوظ است.</p>
         </div>
       </footer>
     </div>
